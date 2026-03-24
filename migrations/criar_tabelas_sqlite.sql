@@ -1,7 +1,6 @@
 -- Script SQL para criar as tabelas no SQLite
--- Usar este script no DBeaver antes de importar os CSVs
 
--- Criar tabela de vendas normalizadas
+-- Criação de tabela de vendas normalizadas
 CREATE TABLE IF NOT EXISTS vendas (
     id INTEGER PRIMARY KEY,
     id_client INTEGER NOT NULL,
@@ -11,7 +10,7 @@ CREATE TABLE IF NOT EXISTS vendas (
     sale_date TEXT NOT NULL
 );
 
--- Criar tabela de custos normalizados
+-- Criação de tabela de custos normalizados
 CREATE TABLE IF NOT EXISTS custos (
     product_id INTEGER NOT NULL,
     start_date TEXT NOT NULL,
@@ -19,13 +18,13 @@ CREATE TABLE IF NOT EXISTS custos (
     PRIMARY KEY (product_id, start_date)
 );
 
--- Criar tabela de taxas de câmbio
+-- Criação de tabela de taxas de câmbio
 CREATE TABLE IF NOT EXISTS cambio (
     date TEXT PRIMARY KEY,
     taxa_venda REAL NOT NULL
 );
 
--- Criar tabela de produtos
+-- Criação de tabela de produtos
 CREATE TABLE IF NOT EXISTS produtos (
     code INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -33,7 +32,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     actual_category TEXT NOT NULL
 );
 
--- Criar índices para melhor performance nas JOINs
+-- Criação de índices para melhor performance nas JOINs
 CREATE INDEX IF NOT EXISTS idx_vendas_product ON vendas(id_product);
 CREATE INDEX IF NOT EXISTS idx_vendas_date ON vendas(sale_date);
 CREATE INDEX IF NOT EXISTS idx_custos_product ON custos(product_id);
