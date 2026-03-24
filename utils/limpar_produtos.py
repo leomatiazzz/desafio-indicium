@@ -56,8 +56,8 @@ df = df[['code', 'name', 'price', 'actual_category']]
 # Salvar CSV limpo
 df.to_csv(caminho_clean, index=False)
 
-print(f"✓ Arquivo limpo criado: {caminho_clean}")
-print(f"✓ Total de produtos: {len(df)}")
+print(f"Arquivo limpo criado: {caminho_clean}")
+print(f"Total de produtos: {len(df)}")
 print(f"\nPrimeiras 5 linhas:")
 print(df.head())
 print(f"\nÚltimas 5 linhas:")

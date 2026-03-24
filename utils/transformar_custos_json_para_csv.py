@@ -2,8 +2,8 @@ import json
 import csv
 from datetime import datetime
 
-input_path = 'datasets/custos_importacao.json'
-output_path = 'datasets/custos_importacao_normalizado.csv'
+input_path = '../datasets/custos_importacao.json'
+output_path = '../features/custos_importacao_normalizado.csv'
 
 with open(input_path, 'r', encoding='utf-8') as f:
     data = json.load(f)

@@ -14,7 +14,7 @@ def normalize_category(cat):
 
 # Lendo o dataset CSV
 data = []
-with open('datasets/produtos_raw.csv', 'r', encoding='utf-8') as f:
+with open('../datasets/produtos_raw.csv', 'r', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     for row in reader:
         # Padronizar categoria
@@ -33,11 +33,11 @@ for row in data:
         unique_data.append(row)
 
 # Salvando o CSV limpo
-with open('datasets/produtos_clean.csv', 'w', newline='', encoding='utf-8') as f:
+with open('../features/produtos_clean.csv', 'w', newline='', encoding='utf-8') as f:
     if unique_data:
         fieldnames = unique_data[0].keys()
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(unique_data)
 
-print("Dados normalizados salvos em datasets/produtos_clean.csv")
+print("Dados normalizados salvos em features/produtos_clean.csv")
