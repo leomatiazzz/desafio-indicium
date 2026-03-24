@@ -1,8 +1,3 @@
--- ============================================================
--- QUERY SIMPLIFICADA (SEM CTEs)
--- ============================================================
-
--- QUERY 1: TOP 10 CLIENTES
 SELECT
     v.id_client,
     SUM(v.total) AS faturamento_total,
@@ -15,10 +10,6 @@ GROUP BY v.id_client
 HAVING COUNT(DISTINCT UPPER(TRIM(REPLACE(p.actual_category, ' ', '')))) >= 3
 ORDER BY ticket_medio DESC, v.id_client ASC
 LIMIT 10;
-
--- ============================================================
--- QUERY 2: VERIFICAÇÃO DE DADOS
--- ============================================================
 
 SELECT 
     COUNT(*) AS total_vendas,

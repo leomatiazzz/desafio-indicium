@@ -1,18 +1,3 @@
--- ============================================================
--- QUESTÃO 5.1 - ANÁLISE DE CLIENTES FIÉIS (SQLite)
--- ============================================================
--- Objetivo: Identificar os 10 clientes "fiéis" (maior ticket médio,
--- com 3+ categorias de compra) e determinar qual categoria eles mais compram.
---
--- Tabelas necessárias:
--- - vendas: id, id_client, id_product, qtd, total, sale_date
--- - produtos: code, actual_category (ou use produtos_normalizado.csv)
--- ============================================================
-
--- ============================================================
--- PARTE 1: CALCULAR TICKET MÉDIO E DIVERSIDADE POR CLIENTE
--- ============================================================
-
 WITH categorias_normalizadas AS (
     -- Normalizar categorias de produtos removendo espaços e padronizando
     SELECT DISTINCT
@@ -33,10 +18,6 @@ metricas_cliente AS (
     LEFT JOIN categorias_normalizadas cn ON v.id_product = cn.code
     GROUP BY v.id_client
 ),
-
--- ============================================================
--- PARTE 2: FILTRAR CLIENTES ELITE (3+ CATEGORIAS)
--- ============================================================
 
 clientes_elite AS (
     SELECT
@@ -67,10 +48,6 @@ SELECT
     ranking
 FROM top_10_fieis
 ORDER BY ranking;
-
--- ============================================================
--- PARTE 3: CATEGORIA MAIS VENDIDA ENTRE CLIENTES ELITE
--- ============================================================
 
 WITH categorias_normalizadas_v2 AS (
     SELECT DISTINCT
@@ -120,7 +97,6 @@ categoria_vendas_elite AS (
     GROUP BY cn.categoria_norm
 )
 
--- QUERY RESULTADO 2: CATEGORIA MAIS VENDIDA
 SELECT
     categoria,
     quantidade_total,
@@ -130,12 +106,6 @@ SELECT
 FROM categoria_vendas_elite
 ORDER BY quantidade_total DESC;
 
--- ============================================================
--- QUERY COMPLETA (Versão Única)
--- ============================================================
--- Se preferir uma versão simplificada sem CTEs para testes rápidos:
-
--- Top 10 Clientes (Versão Simples):
 SELECT
     v.id_client,
     SUM(v.total) AS faturamento_total,

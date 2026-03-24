@@ -1,11 +1,3 @@
--- ============================================================
--- QUESTÃO 5 - CLIENTES FIÉIS
--- ============================================================
-
--- ============================================================
--- QUERY 1: TOP 10 CLIENTES FIÉIS (3+ categorias, maior ticket médio)
--- ============================================================
-
 WITH categorias_normalizadas AS (
     SELECT DISTINCT
         code,
@@ -47,10 +39,6 @@ SELECT
 FROM clientes_com_filtro
 WHERE ranking <= 10
 ORDER BY ranking;
-
--- ============================================================
--- QUERY 2: CATEGORIA MAIS VENDIDA PELOS 10 CLIENTES FIÉIS
--- ============================================================
 
 WITH categorias_normalizadas AS (
     SELECT DISTINCT
