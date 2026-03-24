@@ -72,7 +72,6 @@ ORDER BY ranking;
 -- PARTE 3: CATEGORIA MAIS VENDIDA ENTRE CLIENTES ELITE
 -- ============================================================
 
--- Segunda query (executar após a primeira)
 WITH categorias_normalizadas_v2 AS (
     SELECT DISTINCT
         code,

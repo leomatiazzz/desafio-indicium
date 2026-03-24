@@ -1,7 +1,3 @@
--- ============================================================
--- QUESTÃO 5 - VERSÃO ULTRA SIMPLES (SEM CTEs)
--- ============================================================
--- Para casos onde o DBeaver tem problemas com CTEs
 
 -- QUERY 1: TOP 10 CLIENTES FIÉIS
 SELECT
@@ -20,7 +16,7 @@ LIMIT 10;
 -- ============================================================
 -- QUERY 2: CATEGORIA MAIS VENDIDA (DOS TOP 10)
 -- ============================================================
--- Execute apenas esta query separadamente
+
 
 SELECT
     UPPER(TRIM(REPLACE(p.actual_category, ' ', ''))) AS categoria,

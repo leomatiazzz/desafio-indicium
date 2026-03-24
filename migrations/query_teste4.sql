@@ -1,9 +1,8 @@
 -- ============================================================
--- QUERY SIMPLIFICADA (SEM CTEs) - PARA TESTAR NO DBEAVER
+-- QUERY SIMPLIFICADA (SEM CTEs)
 -- ============================================================
--- Se as queries com CTEs tiverem problemas, use estas versões simples
 
--- QUERY 1: TOP 10 CLIENTES (Versão Simples)
+-- QUERY 1: TOP 10 CLIENTES
 SELECT
     v.id_client,
     SUM(v.total) AS faturamento_total,
@@ -18,9 +17,8 @@ ORDER BY ticket_medio DESC, v.id_client ASC
 LIMIT 10;
 
 -- ============================================================
--- QUERY 2: VERIFICAÇÃO DE DADOS (Debug)
+-- QUERY 2: VERIFICAÇÃO DE DADOS
 -- ============================================================
--- Se a Query 1 não funcionar, teste primeiro com esta:
 
 SELECT 
     COUNT(*) AS total_vendas,

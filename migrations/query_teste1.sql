@@ -1,7 +1,6 @@
 -- ============================================================
--- QUESTÃO 5 - CLIENTES FIÉIS (SQLite - Versão Corrigida)
+-- QUESTÃO 5 - CLIENTES FIÉIS
 -- ============================================================
--- Cada query é independente - execute uma por vez
 
 -- ============================================================
 -- QUERY 1: TOP 10 CLIENTES FIÉIS (3+ categorias, maior ticket médio)
@@ -52,7 +51,6 @@ ORDER BY ranking;
 -- ============================================================
 -- QUERY 2: CATEGORIA MAIS VENDIDA PELOS 10 CLIENTES FIÉIS
 -- ============================================================
--- Execute APENAS esta query (não execute junto com a Query 1)
 
 WITH categorias_normalizadas AS (
     SELECT DISTINCT

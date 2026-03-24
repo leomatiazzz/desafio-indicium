@@ -1,5 +1,5 @@
 -- Consulta SQL para análise de prejuízos
--- Execute este script após importar todos os CSVs
+-- Executar este script após importar todos os CSVs
 
 WITH custo_por_venda AS (
     SELECT 

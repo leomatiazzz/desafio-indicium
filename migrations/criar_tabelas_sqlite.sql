@@ -1,5 +1,5 @@
 -- Script SQL para criar as tabelas no SQLite
--- Use este script no DBeaver antes de importar os CSVs
+-- Usar este script no DBeaver antes de importar os CSVs
 
 -- Criar tabela de vendas normalizadas
 CREATE TABLE IF NOT EXISTS vendas (
