@@ -36,7 +36,7 @@ Abra e execute `apresentacao_desafio_indicium.ipynb` no VS Code/Jupyter.
 
 ### Streamlit
 ```bash
-pip install -r requirements_streamlit.txt
+pip install -r requirements.txt
 streamlit run app_desafio_indicium.py
 ```
 
