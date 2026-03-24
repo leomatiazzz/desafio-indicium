@@ -6,9 +6,9 @@ Este guia descreve como preparar e executar a análise de prejuízos usando o DB
 ## Arquivos Criados
 - `criar_tabelas_sqlite.sql` — Script para criar as tabelas
 - `analise_prejuizos.sql` — Consulta SQL para análise de prejuízos
-- `datasets/vendas_normalizado.csv` — Dados de vendas (1950 linhas)
-- `datasets/custos_importacao_normalizado.csv` — Dados de custos (1260 linhas)
-- `datasets/cambio.csv` — Taxas de câmbio (287 linhas, todas com taxa 5.0 como fallback)
+- `features/vendas_normalizado.csv` — Dados de vendas (1950 linhas)
+- `features/custos_importacao_normalizado.csv` — Dados de custos (1260 linhas)
+- `features/cambio.csv` — Taxas de câmbio (287 linhas, todas com taxa 5.0 como fallback)
 
 ## Passo 1: Criar o Banco de Dados SQLite
 
@@ -17,7 +17,7 @@ Este guia descreve como preparar e executar a análise de prejuízos usando o DB
 2. Clique em "Database" → "New Database Connection"
 3. Selecione "SQLite"
 4. Escolha "Create new database"
-5. Selecione uma pasta/nome para o arquivo (ex.: `C:\Users\Leo\Downloads\Desafio Indicium\desafio_indicium.db`)
+5. Selecione uma pasta/nome para o arquivo (ex.: `C:\Users\Leo\Downloads\Desafio Indicium\indicium.db`)
 6. Clique em "Finish"
 
 ## Passo 2: Criar as Tabelas
@@ -34,9 +34,9 @@ Este guia descreve como preparar e executar a análise de prejuízos usando o DB
 2. Selecione "Import Data"
 3. Escolha "From File" → "CSV"
 4. Navegue para o arquivo CSV correspondente:
-   - `datasets/vendas_normalizado.csv` → Tabela `vendas`
-   - `datasets/custos_importacao_normalizado.csv` → Tabela `custos`
-   - `datasets/cambio.csv` → Tabela `cambio`
+   - `features/vendas_normalizado.csv` → Tabela `vendas`
+   - `features/custos_importacao_normalizado.csv` → Tabela `custos`
+   - `features/cambio.csv` → Tabela `cambio`
 
 ### Configurações de Importação:
 - **Delimitador**: `,` (vírgula)
