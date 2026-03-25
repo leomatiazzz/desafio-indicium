@@ -18,6 +18,10 @@ O objetivo foi responder às questões do desafio cobrindo:
 2. `app_desafio_indicium.py`
    - Dashboard Streamlit com filtros, KPIs, evolução de faturamento, top produtos, recomendação e visuais de Q4/Q5/Q6.
 
+## Deploy
+- No streamlit: https://desafio-indicium-2026.streamlit.app/
+- No render: https://desafio-indicium.onrender.com/
+
 ## Documentação
 - [Índice da documentação](docs/INDICE_DOCUMENTACAO.md)
 - [Dicionário de dados](docs/DICIONARIO_DADOS.md)
