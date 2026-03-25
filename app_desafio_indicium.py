@@ -44,11 +44,20 @@ def format_int_br(valor):
         return '-'
     return f'{int(valor):,}'.replace(',', '.')
 
+
+def resolve_existing_path(*candidatos):
+    for caminho in candidatos:
+        if os.path.exists(caminho):
+            return caminho
+    raise FileNotFoundError(f'Nenhum caminho encontrado entre: {candidatos}')
+
 @st.cache_data
 def load_data():
-    vendas_path = 'datasets/vendas_2023_2024.csv'
-    if not os.path.exists(vendas_path):
-        vendas_path = 'datasets_transformers/vendas_normalizado.csv'
+    vendas_path = resolve_existing_path(
+        'datasets/vendas_2023_2024.csv',
+        'features/vendas_normalizado.csv',
+        'datasets_transformers/vendas_normalizado.csv',
+    )
 
     vendas = pd.read_csv(vendas_path)
     produtos = pd.read_csv('datasets/produtos_raw.csv')
@@ -67,8 +76,18 @@ def load_data():
 
     # --- Margens por venda (Q4 / Q5) ---
     try:
-        custos = pd.read_csv('datasets_transformers/custos_importacao_normalizado.csv')
-        cambio_df = pd.read_csv('datasets_transformers/cambio.csv')
+        custos = pd.read_csv(
+            resolve_existing_path(
+                'features/custos_importacao_normalizado.csv',
+                'datasets_transformers/custos_importacao_normalizado.csv',
+            )
+        )
+        cambio_df = pd.read_csv(
+            resolve_existing_path(
+                'features/cambio.csv',
+                'datasets_transformers/cambio.csv',
+            )
+        )
         custos['start_date'] = pd.to_datetime(custos['start_date'])
         cambio_df['date'] = pd.to_datetime(cambio_df['date'])
         cambio_df = cambio_df.sort_values('date')

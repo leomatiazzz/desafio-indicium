@@ -44,11 +44,11 @@ streamlit run app_desafio_indicium.py
 - `datasets/vendas_2023_2024.csv` (fonte canônica de vendas)
 - `datasets/produtos_raw.csv`
 - `datasets/clientes_crm.json`
-- `datasets_transformers/custos_importacao_normalizado.csv`
-- `datasets_transformers/cambio.csv`
+- `features/custos_importacao_normalizado.csv`
+- `features/cambio.csv`
 
 Fallback técnico:
-- `datasets_transformers/vendas_normalizado.csv` apenas se o bruto não estiver disponível.
+- `features/vendas_normalizado.csv` apenas se o bruto não estiver disponível.
 
 ## Observações analíticas
 - Recomendação: filtragem colaborativa item-item (similaridade cosseno em matriz binária usuário-item).
