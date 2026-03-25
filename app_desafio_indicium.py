@@ -123,11 +123,17 @@ def load_data():
 
 def get_recommendations(base, produtos, produto_ref_nome='GPS Garmin Vortex Maré Drift', top_n=5):
     interacoes = base[['id_client', 'id_product']].drop_duplicates().copy()
+    if interacoes.empty:
+        return pd.DataFrame(columns=['id_product', 'produto', 'similaridade']), 'sem_dados_periodo'
+
     interacoes['valor'] = 1
 
     matriz_ui = interacoes.pivot_table(
         index='id_client', columns='id_product', values='valor', aggfunc='max', fill_value=0
     ).astype(np.int8)
+
+    if matriz_ui.empty or matriz_ui.shape[1] == 0:
+        return pd.DataFrame(columns=['id_product', 'produto', 'similaridade']), 'sem_dados_periodo'
 
     matriz_iu = matriz_ui.T
     sim = cosine_similarity(matriz_iu.values)
@@ -135,9 +141,12 @@ def get_recommendations(base, produtos, produto_ref_nome='GPS Garmin Vortex Mar�
 
     ref = produtos.loc[produtos['name'].str.strip().str.lower() == produto_ref_nome.lower(), 'code']
     if ref.empty:
-        return pd.DataFrame(columns=['id_product', 'produto', 'similaridade'])
+        return pd.DataFrame(columns=['id_product', 'produto', 'similaridade']), 'produto_inexistente'
 
     ref_code = ref.iloc[0]
+    if ref_code not in sim_df.index:
+        return pd.DataFrame(columns=['id_product', 'produto', 'similaridade']), 'sem_dados_periodo'
+
     ranking = (
         sim_df.loc[ref_code]
         .drop(labels=[ref_code], errors='ignore')
@@ -149,7 +158,7 @@ def get_recommendations(base, produtos, produto_ref_nome='GPS Garmin Vortex Mar�
     ranking = ranking.rename(columns={ranking.columns[0]: 'id_product'})
     ranking = ranking.merge(produtos[['code', 'name']], left_on='id_product', right_on='code', how='left')
     ranking = ranking.rename(columns={'name': 'produto'})
-    return ranking[['id_product', 'produto', 'similaridade']]
+    return ranking[['id_product', 'produto', 'similaridade']], 'ok'
 
 
 base, produtos = load_data()
@@ -221,10 +230,13 @@ st.plotly_chart(fig2, width='stretch')
 
 st.markdown('### Recomendação item-item')
 produto_ref_nome = st.text_input('Produto de referência', 'GPS Garmin Vortex Maré Drift')
-recs = get_recommendations(f, produtos, produto_ref_nome, top_n=5)
+recs, recs_status = get_recommendations(f, produtos, produto_ref_nome, top_n=5)
 
 if recs.empty:
-    st.warning('Produto de referência não encontrado para recomendação.')
+    if recs_status == 'produto_inexistente':
+        st.warning('Produto de referência não encontrado no catálogo para recomendação.')
+    else:
+        st.info('Sem dados suficientes no período selecionado para gerar recomendação.')
 else:
     recs_exibicao = recs.rename(columns={'id_product': 'id_produto'}).copy()
     recs_exibicao.index = range(1, len(recs_exibicao) + 1)
