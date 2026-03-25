@@ -207,7 +207,8 @@ top_prod = (
 top_prod_exibicao = top_prod.rename(columns={'id_product': 'id_produto', 'name': 'produto'}).copy()
 top_prod_exibicao['faturamento'] = top_prod_exibicao['faturamento'].apply(format_brl)
 top_prod_exibicao['quantidade'] = top_prod_exibicao['quantidade'].apply(format_int_br)
-st.dataframe(top_prod_exibicao.reset_index(drop=True), width='stretch')
+top_prod_exibicao.index = range(1, len(top_prod_exibicao) + 1)
+st.dataframe(top_prod_exibicao, width='stretch')
 
 fig2 = px.bar(
     top_prod.sort_values('faturamento'),
@@ -226,7 +227,8 @@ if recs.empty:
     st.warning('Produto de referência não encontrado para recomendação.')
 else:
     recs_exibicao = recs.rename(columns={'id_product': 'id_produto'}).copy()
-    st.dataframe(recs_exibicao.reset_index(drop=True), width='stretch')
+    recs_exibicao.index = range(1, len(recs_exibicao) + 1)
+    st.dataframe(recs_exibicao, width='stretch')
     st.success(f"Recomendação principal: {recs.iloc[0]['produto']} (id={recs.iloc[0]['id_product']})")
 
     fig3 = px.bar(
